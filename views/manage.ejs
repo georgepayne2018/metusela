@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Mirrored from demo.dashboardpack.com/finance-html/cards.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 25 Jul 2024 17:30:52 GMT -->
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Finance</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+
+<link rel="stylesheet" href="css/bootstrap1.min.css" />
+
+<link rel="stylesheet" href="vendors/themefy_icon/themify-icons.css" />
+
+<link rel="stylesheet" href="vendors/swiper_slider/css/swiper.min.css" />
+
+<link rel="stylesheet" href="vendors/select2/css/select2.min.css" />
+
+<link rel="stylesheet" href="vendors/niceselect/css/nice-select.css" />
+
+<link rel="stylesheet" href="vendors/owl_carousel/css/owl.carousel.css" />
+
+<link rel="stylesheet" href="vendors/gijgo/gijgo.min.css" />
+
+<link rel="stylesheet" href="vendors/font_awesome/css/all.min.css" />
+<link rel="stylesheet" href="vendors/tagsinput/tagsinput.css" />
+
+<link rel="stylesheet" href="vendors/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="vendors/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="vendors/datatable/css/buttons.dataTables.min.css" />
+
+<link rel="stylesheet" href="vendors/text_editor/summernote-bs4.css" />
+
+<link rel="stylesheet" href="vendors/morris/morris.css">
+
+<link rel="stylesheet" href="vendors/material_icon/material-icons.css" />
+
+<link rel="stylesheet" href="css/metisMenu.css">
+
+<link rel="stylesheet" href="css/style1.css" />
+<link rel="stylesheet" href="css/colors/default.css" id="colorSkinCSS">
+</head>
+<body class="crm_body_bg">
+
+
+
+
+<nav class="sidebar">
+<div class="logo d-flex justify-content-between">
+<a href="index.html"><img src="img/logo.png" alt></a>
+<div class="sidebar_close_icon d-lg-none">
+<i class="ti-close"></i>
+</div>
+</div>
+<ul id="sidebar_menu">
+<li class="mm-active">
+<a class="active " href="/" aria-expanded="false">
+
+<img src="img/menu-icon/1.svg" alt>
+<span>Dashboard</span>
+</a>
+
+</li>
+<li class>
+<a class="" href="/accounts" aria-expanded="false">
+<img src="img/menu-icon/2.svg" alt>
+<span>Accounts</span>
+</a>
+<!-- <li class>
+<a class="" href="/accounts" aria-expanded="false">
+<img src="img/menu-icon/2.svg" alt>
+<span>Manage Tweets</span>
+</a> -->
+
+</li>
+<li class>
+<a class="has-arrow" href="#" aria-expanded="false">
+<img src="img/menu-icon/3.svg" alt>
+<span>Logout</span>
+</a>
+
+</li>
+
+
+
+
+</ul>
+</nav>
+
+<section class="main_content dashboard_part">
+
+<div class="container-fluid g-0">
+<div class="row">
+<div class="col-lg-12 p-0">
+<div class="header_iner d-flex justify-content-between align-items-center">
+<div class="sidebar_icon d-lg-none">
+<i class="ti-menu"></i>
+</div>
+
+<div class="header_right d-flex justify-content-between align-items-center">
+<!-- <div class="header_notification_warp d-flex align-items-center">
+<li>
+<a href="#"> <img src="img/icon/bell.svg" alt> </a>
+</li>
+<li>
+<a href="#"> <img src="img/icon/msg.svg" alt> </a>
+</li>
+</div> -->
+<div class="profile_info">
+<img src="img/client_img.png" alt="#">
+<div class="profile_info_iner">
+<!-- <p>Welcome Admin!</p> -->
+<!-- <h5>Travor James</h5> -->
+<div class="profile_info_details">
+<a href="#">My Profile <i class="ti-user"></i></a>
+<a href="#">Settings <i class="ti-settings"></i></a>
+<a href="/logout">Log Out <i class="ti-shift-left"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="main_content_iner ">
+<div class="container-fluid plr_30 body_white_bg pt_30">
+<div class="row justify-content-center">
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="overflow: hidden;">
+  <div class="carousels-container ">
+        <button class="carousel-control-prev carousels-button" onclick="moveCarousel(-1)">&#10094;</button>
+        <div class="carousels">
+             <% matching.forEach(user => { %>
+                <div class="carousel-itemer">
+                    <div class="card" style="width: 100%; height: 100%;">
+                        <div class="card-body">
+                            <h5 class="poly card-title">TweetID: <span style="color:indigo;"><%= user.id %></span></h5>
+                            <h6 class=" poly card-subtitle mb-2 ">FullName: <%= user.uname %></h6>
+                            <p class="poly" style="color: cadetblue;"class="card-text"><%- user.status.replace(/\n/g, '<br>') %></p>
+                            
+                            
+                            <!-- <a href="<%= user.link1 %>" class="card-link">Card link</a>
+                            <a href="<%= user.link2 %>" class="card-link">Another link</a> -->
+                        </div>
+                        <div class="card-footer">
+                        	<form class="delete-tweet-form"action="/delete-tweet" method="post">
+                                <input type="text" name="tweetId" value="<%= user.id %>" hidden>
+                                <input type="text" name="oauthAccessToken" value="<%= user.oauthAccessToken %>" hidden>
+                                <input type="text" name="oauthAccessToken" value="<%= user.oauthAccessTokenSecret %>" hidden>
+                            	<button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+            
+        </div>
+        <button class="carousels-button carousel-control-next" onclick="moveCarousel(1)">&#10095;</button>
+    </div></div>
+    <button id="notifyBtn">Show Notification</button>
+
+    <div id="notification" class="alert notification">
+    	<button id="closeBtn">&times;</button>
+        <span id="notif"></span>
+        
+    </div>
+<!-- <div class="col-lg-6">
+<div class="white_box mb_30">
+<div class="box_header ">
+<div class="main-title">
+<h3 class="mb-0">Card 3</h3>
+</div>
+</div>
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+<h5 class="card-title">Card title</h5>
+<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<a href="#" class="card-link">Card link</a>
+<a href="#" class="card-link">Another link</a>
+</div>
+</div>
+</div>
+</div> -->
+
+
+
+<script type="text/javascript">
+	document.getElementById('notifyBtn').addEventListener('click', function() {
+    var notification = document.getElementById('notification');
+    notification.classList.add('show');
+});
+
+document.getElementById('closeBtn').addEventListener('click', function() {
+    var notification = document.getElementById('notification');
+    notification.classList.remove('show');
+});
+	document.addEventListener('DOMContentLoaded', () => {
+  document.body.addEventListener('submit', function(event) {
+  	var notifElement = document.getElementById('notif');
+  	var notifElements = document.getElementById('notification');
+    if (event.target.classList.contains('delete-tweet-form')) {
+      event.preventDefault(); // Prevent the default form submission
+     
+      const formData = new FormData(event.target);
+
+      fetch('/delete-tweet', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        const notify = document.getElementById('notifyBtn');
+        if (data.success) {
+          notifElements.className = 'alert alert-success notification  '; // Add success class
+          notifElement.innerHTML = data.message;
+        } else {
+          notifElements.className = 'alert alert-danger notification  '; // Add danger class
+          notifElement.innerHTML = data.message;
+        }
+        document.getElementById('notifyBtn').click();
+      })
+      .catch(error => {
+        notifElements.className = 'alert alert-danger notification  '; // Add danger class for error
+        notifElement.innerHTML = 'An error occurred. Please try again.';
+        document.getElementById('notifyBtn').click();
+      });
+    }
+  });
+});
+
+</script>
+
+
+
+
+<style type="text/css">
+  @media (max-width: 768px) {
+	  .poly{
+	font-size: 20px;
+	white-space: pre-wrap;
+}
+}
+ @media (max-width: 500px) {
+	  .poly{
+	font-size: 15px;
+	white-space: pre-wrap;
+}
+}
+@media (min-width: 501px) {
+	  .poly{
+	font-size: 15px;
+	white-space: pre-wrap;
+}
+}
+ @media (min-width: 1364px) {
+	  .poly{
+	font-size: 35px;
+	white-space: pre-wrap;
+}
+
+}
+
+	#notifyBtn {
+	display:none;
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.notification {
+	max-width: 	80%;
+	z-index:9999999;
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+/*    background-color: #333;*/
+    color: #000;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.notification span {
+    margin-right: 10px;
+}
+
+#closeBtn {
+
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+}
+	
+/*.card-body {
+    white-space: pre-wrap; /* Preserves whitespace and line breaks */
+}*/
+.carousels-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    height: 80vh;
+}
+
+.carousels {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease;
+    height: 70vh;
+}
+
+.carousel-itemer {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+    background-color: #ddd;
+    border-right: 1px solid #fff;
+    flex-shrink: 0; /* Prevents items from shrinking */
+}
+.carousels-button:hover{
+	color:#000;
+}
+.carousels-button {
+    /*position: absolute;
+    top: 50%;*/
+/*    transform: translateY(-50%);*/
+/*    background-color: rgba(0, 0, 0, 0.5);*/
+/*    border: none;*/
+    color: #000;
+/*    padding: 5px;*/
+/*    cursor: pointer;*/
+/*    border-radius: 200px;*/
+    z-index: 1;
+}
+
+.prev {
+    left: 0px;
+}
+
+.next {
+    right: 0px;
+}
+
+@media (max-width: 600px) {
+    .carousel-itemer {
+        padding: 5px;
+    }
+}
+
+</style>
+<script type="text/javascript">
+	function updateCardContent(element, text) {
+    element.innerHTML = text.replace(/\n/g, '<br>'); // Convert \n to <br>
+}
+	let currentIndex = 0;
+let startX = null;
+
+function moveCarousel(direction) {
+    const carousel = document.querySelector('.carousels');
+    const items = document.querySelectorAll('.carousel-itemer');
+    const totalItems = items.length;
+
+    currentIndex += direction;
+
+    if (currentIndex < 0) {
+        currentIndex = totalItems - 1;
+    } else if (currentIndex >= totalItems) {
+        currentIndex = 0;
+    }
+
+    const offset = -currentIndex * 100;
+    carousel.style.transform = `translateX(${offset}%)`;
+}
+
+function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+}
+
+function handleTouchMove(event) {
+    if (startX === null) {
+        return;
+    }
+
+    const currentX = event.touches[0].clientX;
+    const diffX = startX - currentX;
+
+    if (Math.abs(diffX) > 50) {
+        moveCarousel(diffX > 0 ? 1 : -1);
+        startX = null;
+    }
+}
+
+document.querySelector('.carousels').addEventListener('touchstart', handleTouchStart);
+document.querySelector('.carousels').addEventListener('touchmove', handleTouchMove);
+
+</script>
+</div>
+</div>
+
+<div class="footer_part">
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-12 col-sm-12">
+<div class="footer_iner text-center">
+<p>2020 © Influence - Designed by<a href="#"> Dashboard</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<script src="js/jquery1-3.4.1.min.js"></script>
+
+<script src="js/popper1.min.js"></script>
+
+<script src="js/bootstrap1.min.js"></script>
+
+<script src="js/metisMenu.js"></script>
+
+<script src="vendors/count_up/jquery.waypoints.min.js"></script>
+
+<script src="vendors/chartlist/Chart.min.js"></script>
+
+<script src="vendors/count_up/jquery.counterup.min.js"></script>
+
+<script src="vendors/swiper_slider/js/swiper.min.js"></script>
+
+<script src="vendors/niceselect/js/jquery.nice-select.min.js"></script>
+
+<script src="vendors/owl_carousel/js/owl.carousel.min.js"></script>
+
+<script src="vendors/gijgo/gijgo.min.js"></script>
+
+<script src="vendors/datatable/js/jquery.dataTables.min.js"></script>
+<script src="vendors/datatable/js/dataTables.responsive.min.js"></script>
+<script src="vendors/datatable/js/dataTables.buttons.min.js"></script>
+<script src="vendors/datatable/js/buttons.flash.min.js"></script>
+<script src="vendors/datatable/js/jszip.min.js"></script>
+<script src="vendors/datatable/js/pdfmake.min.js"></script>
+<script src="vendors/datatable/js/vfs_fonts.js"></script>
+<script src="vendors/datatable/js/buttons.html5.min.js"></script>
+<script src="vendors/datatable/js/buttons.print.min.js"></script>
+<script src="js/chart.min.js"></script>
+
+<script src="vendors/progressbar/jquery.barfiller.js"></script>
+
+<script src="vendors/tagsinput/tagsinput.js"></script>
+
+<script src="vendors/text_editor/summernote-bs4.js"></script>
+<script src="vendors/apex_chart/apexcharts.js"></script>
+
+<script src="js/custom.js"></script>
+
+
+<script src="js/active_chart.js"></script>
+<script src="vendors/apex_chart/radial_active.js"></script>
+<script src="vendors/apex_chart/stackbar.js"></script>
+<script src="vendors/apex_chart/area_chart.js"></script>
+<script src="vendors/apex_chart/bar_active_1.js"></script>
+<script src="vendors/chartjs/chartjs_active.js"></script>
+
+</body>
+
+<!-- Mirrored from demo.dashboardpack.com/finance-html/cards.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 25 Jul 2024 17:30:52 GMT -->
+</html>

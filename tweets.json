@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1816961682591109225",
+    "account":"127.0.0.1:3000",
+    "userId": "1816505443537363000",
+    "oauthAccessToken": "1816505443537362944-ZWYAEztqHQ1xzeWvzc3gBQdL5fsWmF",
+    "oauthAccessTokenSecret": "Sh31avOckTWC6piZsnDdbEsvLj00zY2dv1kJSDDZxjaox",
+    "status": "This is the first tweet.\nIt has multiple lines.\nSpecial characters: !@#$%^&*()",
+    "uname": "Micheal Sauceda"
+  },
+  {
+    "id": "1816961682591109226",
+    "account":"127.0.0.1:3000",
+    "userId": "1816505443537363000",
+    "oauthAccessToken": "1816505443537362944-ZWYAEztqHQ1xzeWvzc3gBQdL5fsWmF",
+    "oauthAccessTokenSecret": "Sh31avOckTWC6piZsnDdbEsvLj00zY2dv1kJSDDZxjaox",
+    "status": "This is the first tweet.\nIt has multiple lines.\nSpecial characters: !@#$%^&*()",
+    "uname": "Micheal Sauceda"
+  },
+  {
+    "id": "1816961682591109227",
+    "account":"127.0.0.1:3000",
+    "userId": "1816505443537363000",
+    "oauthAccessToken": "1816505443537362944-ZWYAEztqHQ1xzeWvzc3gBQdL5fsWmF",
+    "oauthAccessTokenSecret": "Sh31avOckTWC6piZsnDdbEsvLj00zY2dv1kJSDDZxjaox",
+    "status": "This is the first tweet.\nIt has multiple lines.\nSpecial characters: !@#$%^&*()",
+    "uname": "Micheal Sauceda"
+  }
+]

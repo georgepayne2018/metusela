@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Mirrored from demo.dashboardpack.com/finance-html/Pagination.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 25 Jul 2024 17:30:52 GMT -->
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Finance</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+
+<link rel="stylesheet" href="css/bootstrap1.min.css" />
+
+<link rel="stylesheet" href="vendors/themefy_icon/themify-icons.css" />
+
+<link rel="stylesheet" href="vendors/swiper_slider/css/swiper.min.css" />
+
+<link rel="stylesheet" href="vendors/select2/css/select2.min.css" />
+
+<link rel="stylesheet" href="vendors/niceselect/css/nice-select.css" />
+
+<link rel="stylesheet" href="vendors/owl_carousel/css/owl.carousel.css" />
+
+<link rel="stylesheet" href="vendors/gijgo/gijgo.min.css" />
+
+<link rel="stylesheet" href="vendors/font_awesome/css/all.min.css" />
+<link rel="stylesheet" href="vendors/tagsinput/tagsinput.css" />
+
+<link rel="stylesheet" href="vendors/datatable/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="vendors/datatable/css/responsive.dataTables.min.css" />
+<link rel="stylesheet" href="vendors/datatable/css/buttons.dataTables.min.css" />
+
+<link rel="stylesheet" href="vendors/text_editor/summernote-bs4.css" />
+
+<link rel="stylesheet" href="vendors/morris/morris.css">
+
+<link rel="stylesheet" href="vendors/material_icon/material-icons.css" />
+
+<link rel="stylesheet" href="css/metisMenu.css">
+
+<link rel="stylesheet" href="css/style1.css" />
+<link rel="stylesheet" href="css/colors/default.css" id="colorSkinCSS">
+</head>
+<body class="crm_body_bg">
+
+
+
+<nav class="sidebar">
+<div class="logo d-flex justify-content-between">
+<a href="index.html"><img src="img/logo.png" alt></a>
+<div class="sidebar_close_icon d-lg-none">
+<i class="ti-close"></i>
+</div>
+</div>
+<ul id="sidebar_menu">
+<li class="mm-active">
+<a class="active " href="/" aria-expanded="false">
+
+<img src="img/menu-icon/1.svg" alt>
+<span>Dashboard</span>
+</a>
+
+</li>
+<li class>
+<a class="" href="/accounts" aria-expanded="false">
+<img src="img/menu-icon/2.svg" alt>
+<span>Accounts</span>
+</a>
+<!-- <li class>
+<a class="" href="/accounts" aria-expanded="false">
+<img src="img/menu-icon/2.svg" alt>
+<span>Manage Tweets</span>
+</a> -->
+
+</li>
+<li class>
+<a class="has-arrow" href="#" aria-expanded="false">
+<img src="img/menu-icon/3.svg" alt>
+<span>Logout</span>
+</a>
+
+</li>
+
+
+
+
+</ul>
+</nav>
+
+<section class="main_content dashboard_part">
+
+<div class="container-fluid g-0">
+<div class="row">
+<div class="col-lg-12 p-0">
+<div class="header_iner d-flex justify-content-between align-items-center">
+<div class="sidebar_icon d-lg-none">
+<i class="ti-menu"></i>
+</div>
+
+<div class="header_right d-flex justify-content-between align-items-center">
+<!-- <div class="header_notification_warp d-flex align-items-center">
+<li>
+<a href="#"> <img src="img/icon/bell.svg" alt> </a>
+</li>
+<li>
+<a href="#"> <img src="img/icon/msg.svg" alt> </a>
+</li>
+</div> -->
+<div class="profile_info">
+<img src="img/client_img.png" alt="#">
+<div class="profile_info_iner">
+<!-- <p>Welcome Admin!</p> -->
+<!-- <h5>Travor James</h5> -->
+<div class="profile_info_details">
+<a href="#">My Profile <i class="ti-user"></i></a>
+<a href="#">Settings <i class="ti-settings"></i></a>
+<a href="/logout">Log Out <i class="ti-shift-left"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="main_content_iner ">
+<div class="container-fluid plr_30 body_white_bg pt_30">
+<div class="row justify-content-center">
+	<div class="col-lg-12">
+<div class="messages_box_area" style="display: inline;">
+<div class="messages_list">
+<div class="white_box ">
+<div class="white_box_tittle list_header">
+<h4>Chat List</h4>
+</div>
+<!-- <div class="serach_field_2">
+<div class="search_inner">
+<form active="#">
+<div class="search_field">
+<input type="text" placeholder="Search content here...">
+</div>
+<button type="submit"> <i class="ti-search"></i> </button>
+</form>
+</div>
+</div> -->
+<ul>
+<% if (users.length > 0) { %>	
+    <% users.forEach(user => { %>
+<li>
+<a href="#">
+<div class="message_pre_left">
+<div class="message_preview_thumb">
+<img src="<%= user.profilepic %>" alt="">
+</div>
+<div class="messges_info">
+<h4><%= user.name %></h4>
+<p><%= user.id %></p>
+ <input class = "userId" type="text"  name="id" value="<%= user.id %>" required readonly hidden>	
+<input class = "AccessT"type="text" value="<%= user.oauthAccessToken %>" hidden>
+<input class = "AccessTS"type="text" value="<%= user.oauthAccessTokenSecret %>" hidden>
+
+
+</div>
+</div>
+<div class="messge_time">
+
+<button type="button" onclick="viewTweets(<%= user.id %>,'<%= user.username %>')" class="btn btn-outline-success larf"><img src="img/icon/bell.svg" alt="">view Tweets</button>
+<button type="button" onclick="viewTweets(<%= user.id %>,'<%= user.username %>')" class="btn btn-outline-success mobi"><img src="img/icon/bell.svg" alt=""></button>		
+<span class="btn btn-outline-success openModalBtn larf"><img src="img/icon/msg.svg" alt="">Tweet</span>
+<span class="btn btn-outline-success openModalBtn mobi"><img src="img/icon/msg.svg" alt=""></span>
+</div>
+
+</a>
+</li>
+    <% }) %>
+
+
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+<script type="text/javascript">
+	
+	function viewTweets(uid,user){
+		window.location.href =`/manage?userId=${uid}&account=${user}`;
+	}
+</script>
+<div class="col-lg-12">
+
+<div class="white_box mb_30">
+
+<nav aria-label="Page navigation example">
+<ul class="pagination">
+<% if (currentPage > 1) { %>	
+<li class="page-item"><a class="page-link" href="/accounts?page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a></li>
+<% } %>
+<% for (let i = 1; i <= totalPages; i++) { %>
+<li class="page-item"><a class="<%= i === currentPage ? 'active' : '' %> page-link" href="/accounts?page=<%= i %>&limit=<%= limit %>"><%= i %></a></li>
+ <% } %>
+<% if (currentPage < totalPages) { %>
+<li class="page-item"><a class="page-link" href="/accounts?page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a></li>
+  <% } %>
+</ul>
+</nav>
+</div>
+</div>
+<% } else { %>
+        <p>No matching users found.</p>
+    <% } %>
+
+
+
+
+
+</div>
+</div>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Post a tweet</h2>
+            <form id="messageForm" action="/tweet" method="post">
+                
+                
+                <input type="text" id="modalUserId" name="uid" required hidden>
+                <input type="text" id="modalAccessToken" name="oauthAccessToken" required hidden>
+                <input type="text" id="modalAccessTokenSecret" name="oauthAccessTokenSecret" required hidden >
+
+                <label for="message">Message:</label>
+                <textarea height="50%" id="message" name="status" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+    <button id="notifyBtn">Show Notification</button>
+
+    <div id="notification" class="alert alert-success notification">
+        <span id="notif"></span>
+        <button id="closeBtn">&times;</button>
+    </div>
+<script type="text/javascript">
+// document.getElementById('notifyBtn').addEventListener('click', function() {
+//     var notification = document.getElementById('notification');
+//     notification.style.display = 'block';
+// });
+
+// document.getElementById('closeBtn').addEventListener('click', function() {
+//     var notification = document.getElementById('notification');
+//     notification.style.display = 'none';
+// });	
+document.getElementById('notifyBtn').addEventListener('click', function() {
+    var notification = document.getElementById('notification');
+    notification.classList.add('show');
+});
+
+document.getElementById('closeBtn').addEventListener('click', function() {
+    var notification = document.getElementById('notification');
+    notification.classList.remove('show');
+});
+
+	//Handle form submission
+// Add event listeners to all openModalBtn elements
+	// 	// Get the modal
+ const modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+const closeSpan = document.getElementsByClassName('close')[0];
+
+// Close the modal when the user clicks on <span> (x)
+closeSpan.onclick = function() {
+    modal.style.display = 'none';
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+document.querySelectorAll('.openModalBtn').forEach(button => {
+    button.addEventListener('click', function() {
+        const userIds = this.closest('li').querySelector('.userId').value;
+        const accessToken = this.closest('li').querySelector('.AccessT').value;
+        const accessTokenSecret = this.closest('li').querySelector('.AccessTS').value;
+
+        // Populate the modal with the retrieved values
+        document.getElementById('modalUserId').value = userIds;
+        document.getElementById('modalAccessToken').value = accessToken;
+        document.getElementById('modalAccessTokenSecret').value = accessTokenSecret;
+
+        // Open the modal
+        modal.style.display = 'block';
+    });
+});
+
+document.getElementById('messageForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const notify = document.getElementById('notifyBtn');
+
+    const formData = new FormData(this);
+    console.log(formData)
+    // Log the form data for debugging
+    for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+    fetch('/tweet', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+          i = 1
+         if (i = 1) {
+            // Handle success
+            //alert(`<div class="alert alert-success" role="alert">${data.message}</div>`);
+            modal.style.display = 'none'; // Close the modal
+            document.getElementById('notif').innerHTML = data.message
+            notify.click();
+        } else {
+            // Handle error returned by the server
+            document.getElementById('notif').innerHTML = data.message
+            notify.click();
+        }
+    })
+    .catch(error => {
+        // Handle error
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
+});
+
+// 	// Get the modal
+// const modal = document.getElementById('myModal');
+
+// // Get the button that opens the modal
+// const btn = document.getElementById('openModalBtn');
+
+// // Get the <span> element that closes the modal
+// const span = document.getElementsByClassName('close')[0];
+
+// // When the user clicks the button, open the modal 
+// btn.onclick = function() {
+	
+//     modal.style.display = 'block';
+// }
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() {
+//     modal.style.display = 'none';
+// }
+
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target === modal) {
+//         modal.style.display = 'none';
+//     }
+// }
+
+// // Optional: Handle form submission
+// document.getElementById('messageForm').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent actual form submission
+//     alert('Message sent!');
+//     modal.style.display = 'none'; // Close the modal after submission
+// });
+
+
+</script>
+
+<style type="text/css">
+/*body {
+    font-family: Arial, sans-serif;
+
+}*/
+.mobi{
+	display: none;
+}
+@media (max-width: 768px) {
+	  .mobi{
+	display: inline-flex;
+}
+.mobi img{
+	    width: 17px;
+        height: 30px;
+}
+.larf{
+	display: none;
+}
+}
+
+
+
+#notifyBtn {
+	display:none;
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.notification {
+	z-index:9999999;
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+/*    background-color: #333;*/
+    color: #000;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.notification span {
+    margin-right: 10px;
+}
+
+#closeBtn {
+
+    background: none;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+}
+	
+	/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 5px 0;
+}
+/* Textarea Styles */
+textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; /* Full width of the form */
+    height: 300px; /* Fixed height for a larger appearance */
+   /* resize: none;  Disable resizing */
+}
+form input,
+form textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+</style>
+
+<div class="footer_part">
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-12 col-sm-12">
+<div class="footer_iner text-center">
+<p>2020 © Influence - Designed by<a href="#"> Dashboard</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<script src="js/jquery1-3.4.1.min.js"></script>
+
+<script src="js/popper1.min.js"></script>
+
+<script src="js/bootstrap1.min.js"></script>
+
+<script src="js/metisMenu.js"></script>
+
+<script src="vendors/count_up/jquery.waypoints.min.js"></script>
+
+<script src="vendors/chartlist/Chart.min.js"></script>
+
+<script src="vendors/count_up/jquery.counterup.min.js"></script>
+
+<script src="vendors/swiper_slider/js/swiper.min.js"></script>
+
+<script src="vendors/niceselect/js/jquery.nice-select.min.js"></script>
+
+<script src="vendors/owl_carousel/js/owl.carousel.min.js"></script>
+
+<script src="vendors/gijgo/gijgo.min.js"></script>
+
+<script src="vendors/datatable/js/jquery.dataTables.min.js"></script>
+<script src="vendors/datatable/js/dataTables.responsive.min.js"></script>
+<script src="vendors/datatable/js/dataTables.buttons.min.js"></script>
+<script src="vendors/datatable/js/buttons.flash.min.js"></script>
+<script src="vendors/datatable/js/jszip.min.js"></script>
+<script src="vendors/datatable/js/pdfmake.min.js"></script>
+<script src="vendors/datatable/js/vfs_fonts.js"></script>
+<script src="vendors/datatable/js/buttons.html5.min.js"></script>
+<script src="vendors/datatable/js/buttons.print.min.js"></script>
+<script src="js/chart.min.js"></script>
+
+<script src="vendors/progressbar/jquery.barfiller.js"></script>
+
+<script src="vendors/tagsinput/tagsinput.js"></script>
+
+<script src="vendors/text_editor/summernote-bs4.js"></script>
+<script src="vendors/apex_chart/apexcharts.js"></script>
+
+<script src="js/custom.js"></script>
+
+
+<script src="js/active_chart.js"></script>
+<script src="vendors/apex_chart/radial_active.js"></script>
+<script src="vendors/apex_chart/stackbar.js"></script>
+<script src="vendors/apex_chart/area_chart.js"></script>
+<script src="vendors/apex_chart/bar_active_1.js"></script>
+<script src="vendors/chartjs/chartjs_active.js"></script>
+
+</body>
+
+<!-- Mirrored from demo.dashboardpack.com/finance-html/Pagination.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 25 Jul 2024 17:30:52 GMT -->
+</html>
