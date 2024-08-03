@@ -16,7 +16,6 @@ const {
   getOAuthRequestToken,
   getOAuthAccessTokenWith,
   oauthGetUserById,
-  postTweetV2,
   sendTelegramMessage
 } = require('./oauth-utilities');
 const upload = multer(); // Use Multer without storage settings for form data
