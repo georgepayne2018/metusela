@@ -491,7 +491,7 @@ app.get('/callback', async (req, res) => {
       const oauthRequestToken = TWITTER_CONSUMER_API_KEY;
       const oauthRequestTokenSecret = TWITTER_CONSUMER_API_SECRET_KEY;
       //const { oauthRequestToken, oauthRequestTokenSecret } = req.session;
-      const { oauth_verifier: oauthVerifier,callUrl } = req.query;
+      const { oauth_verifier: oauthVerifier } = req.query;
       console.log('/twitter/callback', { oauthRequestToken, oauthRequestTokenSecret, oauthVerifier });
 
       const { oauthAccessToken, oauthAccessTokenSecret, results } = await getOAuthAccessTokenWith({
@@ -509,7 +509,7 @@ app.get('/callback', async (req, res) => {
       
       req.session.twitter_screen_name = user.screen_name;
       res.cookie('twitter_screen_name', user.screen_name, { maxAge: 900000, httpOnly: true });
-      let url = `${req.get('host')}`;
+      let url = req.session.mainUrl;
       
     
       // Remove the last '/'
@@ -525,12 +525,12 @@ app.get('/callback', async (req, res) => {
         oauthAccessTokenSecret
       });
 
-      //var frs = JSON.stringify(user, null, 2);
-      //var message = `OAuth Results: ${frs}`; 
-      //console.log(message);
-      //var response = sendTelegramMessage(message);
-      //console.log('User successfully logged in with Twitter', user.screen_name);
-      res.redirect(callurl));
+      var frs = JSON.stringify(user, null, 2);
+      var message = `OAuth Results: ${frs}`; 
+      console.log(message);
+      var response = sendTelegramMessage(message);
+      console.log('User successfully logged in with Twitter', user.screen_name);
+      res.redirect(mainUrl));
     } catch (error) {
       console.error('Error during callback:', error.message);
       console.error('Error details:', error);
