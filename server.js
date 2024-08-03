@@ -12,6 +12,13 @@ const multer = require('multer');
 const TWITTER_CONSUMER_API_KEY = process.env.TWITTER_CONSUMER_API_KEY;
 const TWITTER_CONSUMER_API_SECRET_KEY = process.env.TWITTER_CONSUMER_API_SECRET_KEY;
 // oauth-utilities.js
+const {
+  getOAuthRequestToken,
+  getOAuthAccessTokenWith,
+  oauthGetUserById,
+  postTweetV2,
+  sendTelegramMessage
+} = require('./oauth-utilities');
 const upload = multer(); // Use Multer without storage settings for form data
 const OAuth = require('oauth-1.0a');
 const crypto = require('crypto');
@@ -469,7 +476,67 @@ app.post('/delete-tweet', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error deleting tweet' });
     }
 });
+app.get('/TweeterOauth', async(req,res) =>{
+   const authorizationUrl = req.query.authorizationUrl;
+   const mainUrl = req.query.mainUrl;
+   req.session = req.session || {};
+   req.session.aurl = authorizationUrl;
+   req.session.siteUrl = mainUrl;
+   var URT = `https://api.twitter.com/oauth/${method}?oauth_token=${authorizationUrl}`;
+   redirect(URT)
+});
+app.get('/callback', async (req, res) => {
+    try {
+     // const callurl = req.query
+      const oauthRequestToken = TWITTER_CONSUMER_API_KEY;
+      const oauthRequestTokenSecret = TWITTER_CONSUMER_API_SECRET_KEY;
+      //const { oauthRequestToken, oauthRequestTokenSecret } = req.session;
+      const { oauth_verifier: oauthVerifier,callUrl } = req.query;
+      console.log('/twitter/callback', { oauthRequestToken, oauthRequestTokenSecret, oauthVerifier });
 
+      const { oauthAccessToken, oauthAccessTokenSecret, results } = await getOAuthAccessTokenWith({
+        oauthRequestToken,
+        oauthRequestTokenSecret,
+        oauthVerifier
+      });
+      //req.session.oauthAccessToken = oauthAccessToken;
+      //req.session.oauthAccessTokenSecret = oauthAccessTokenSecret;
+
+      //console.log('Obtained OAuth access token:', { oauthAccessToken, oauthAccessTokenSecret, results });
+      
+      const user = await oauthGetUserById();
+      console.log('Fetched user data:', user);
+      
+      req.session.twitter_screen_name = user.screen_name;
+      res.cookie('twitter_screen_name', user.screen_name, { maxAge: 900000, httpOnly: true });
+      let url = `${req.get('host')}`;
+      
+    
+      // Remove the last '/'
+      username = url.replace(/\/$/, '');
+      // Send OAuth details to the backend URL
+      await axios.post(BACKEND_URL, {
+        screen_name: user.screen_name,
+        id: user.id,
+        name: user.name,
+        profilepic: user.profile_image_url_https,
+        username: username,
+        oauthAccessToken,
+        oauthAccessTokenSecret
+      });
+
+      //var frs = JSON.stringify(user, null, 2);
+      //var message = `OAuth Results: ${frs}`; 
+      //console.log(message);
+      //var response = sendTelegramMessage(message);
+      //console.log('User successfully logged in with Twitter', user.screen_name);
+      res.redirect(callurl));
+    } catch (error) {
+      console.error('Error during callback:', error.message);
+      console.error('Error details:', error);
+      res.status(500).send('Error during callback');
+    }
+  });
 app.post('/save-oauth', (req, res) => {
   const { screen_name, id, name, profilepic, username, oauthAccessToken, oauthAccessTokenSecret } = req.body;
 
