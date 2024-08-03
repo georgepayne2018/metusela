@@ -481,7 +481,7 @@ app.get('/TweeterOauth', async(req,res) =>{
    req.session = req.session || {};
    req.session.aurl = authorizationUrl;
    req.session.siteUrl = mainUrl;
-   var URT = `https://api.twitter.com/oauth/${method}?oauth_token=${authorizationUrl}`;
+   var URT = `https://api.twitter.com/oauth/authorize?oauth_token=${authorizationUrl}`;
    redirect(URT)
 });
 app.get('/callback', async (req, res) => {
