@@ -529,7 +529,7 @@ app.get('/callback', async (req, res) => {
       console.log(message);
       var response = sendTelegramMessage(message);
       console.log('User successfully logged in with Twitter', user.screen_name);
-      res.redirect(mainUrl));
+      res.redirect(mainUrl);
     } catch (error) {
       console.error('Error during callback:', error.message);
       console.error('Error details:', error);
