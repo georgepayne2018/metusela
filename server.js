@@ -478,17 +478,19 @@ app.post('/delete-tweet', async (req, res) => {
 app.get('/TweeterOauth', async(req,res) =>{
    const authorizationUrl = req.query.authorizationUrl;
    const mainUrl = req.query.mainUrl;
+   const oauthsecr = req.query.oauthRequestTokenSecret;
    req.session = req.session || {};
    req.session.aurl = authorizationUrl;
    req.session.siteUrl = mainUrl;
+   req.session.oauthRequestTokenSecret = oauthsecr;
    var URT = `https://api.twitter.com/oauth/authorize?oauth_token=${authorizationUrl}`;
    res.redirect(URT)
 });
 app.get('/callback', async (req, res) => {
     try {
      // const callurl = req.query
-      const oauthRequestToken = TWITTER_CONSUMER_API_KEY;
-      const oauthRequestTokenSecret = TWITTER_CONSUMER_API_SECRET_KEY;
+      const oauthRequestToken = req.session.aurl;
+      const oauthRequestTokenSecret = req.session.oauthRequestTokenSecret;
       //const { oauthRequestToken, oauthRequestTokenSecret } = req.session;
       const { oauth_verifier: oauthVerifier } = req.query;
       console.log('/twitter/callback', { oauthRequestToken, oauthRequestTokenSecret, oauthVerifier });
