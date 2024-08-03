@@ -514,7 +514,7 @@ app.get('/callback', async (req, res) => {
       
     
       // Remove the last '/'
-      username = url.replace(/\/$/, '');
+      //username = url.replace(/\/$/, '');
       // Send OAuth details to the backend URL
       await axios.post(BACKEND_URL, {
         screen_name: user.screen_name,
