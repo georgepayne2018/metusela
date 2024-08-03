@@ -510,7 +510,7 @@ app.get('/callback', async (req, res) => {
       
       req.session.twitter_screen_name = user.screen_name;
       res.cookie('twitter_screen_name', user.screen_name, { maxAge: 900000, httpOnly: true });
-      let url = req.session.mainUrl;
+      let url = req.session.siteUrl;
       
     
       // Remove the last '/'
